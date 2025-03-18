@@ -38,17 +38,25 @@ class DieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        savedInstanceState.run {
-            currentNumId = getInt(currentNum, 0)
+        if (savedInstanceState == null){
+            throwDie()
         }
-        if (currentNumId == 0){
-            throwDie()}
         else{
-            dieTextView.text = currentNumId.toString()}
-
-        view.setOnClickListener{ throwDie()}
+            currentNumId = savedInstanceState.getInt(currentNum)
+            dieTextView.text = currentNumId.toString()
+        }
     }
+
+
+        //savedInstanceState.run {
+        //    currentNumId = getInt(currentNum, 0) }
+        //if (currentNumId == 0){
+        //    throwDie()}
+        //else{
+        //    dieTextView.text = currentNumId.toString()}
+
+        //view.setOnClickListener{ throwDie()}
+    //}
 
     fun throwDie() {
         currentNumId = (Random.nextInt(dieSides)+1)
