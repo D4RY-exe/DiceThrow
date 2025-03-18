@@ -11,9 +11,7 @@ import kotlin.random.Random
 class DieFragment : Fragment() {
 
     val DIESIDE = "sidenumber"
-
     lateinit var dieTextView: TextView
-
     var dieSides: Int = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +42,6 @@ class DieFragment : Fragment() {
     }
 
     fun throwDie() {
-        dieTextView.text = Random.nextInt(dieSides).toString()
+        dieTextView.text = (Random.nextInt(dieSides) +1).toString()
     }
 }
