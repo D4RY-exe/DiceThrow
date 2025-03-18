@@ -14,6 +14,9 @@ class DieFragment : Fragment() {
     lateinit var dieTextView: TextView
     var dieSides: Int = 6
 
+    private val currentNum = "currentnumber"
+    private var currentNumId = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,13 +38,38 @@ class DieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        throwDie()
-        view.setOnClickListener{
-            throwDie()
+
+        savedInstanceState.run {
+            currentNumId = getInt(currentNum, 0)
         }
+        if (currentNumId == 0)
+            throwDie()
+        else
+            throwDie(currentNumId)
     }
+    //throwDie()
+    //view.setOnClickListener{
+    //    throwDie()}
 
     fun throwDie() {
-        dieTextView.text = (Random.nextInt(dieSides) +1).toString()
+        dieTextView.text = (Random.nextInt(dieSides) + 1).toString()
+    }
+
+    fun throwDie(numId: Int) {
+        dieTextView.text = (Random.nextInt(dieSides) + 1).toString()
+    }
+
+    override fun OnSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outstate)
+        outState.putInt(currentNum, currentNumId)
+    }
+
+    companion object {
+        fun newInstance(sides: Int) = DieFragment().apply {
+            //unfinished
+            arguments = Bundle().apply {
+
+            }
+        }
     }
 }
