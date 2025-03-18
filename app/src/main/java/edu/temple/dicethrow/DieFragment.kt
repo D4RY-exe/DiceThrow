@@ -42,33 +42,28 @@ class DieFragment : Fragment() {
         savedInstanceState.run {
             currentNumId = getInt(currentNum, 0)
         }
-        if (currentNumId == 0)
-            throwDie()
-        else
-            throwDie(currentNumId)
+        if (currentNumId == 0){
+            throwDie()}
+        else{
+            dieTextView.text = currentNumId.toString()}
+
+        view.setOnClickListener{ throwDie()}
     }
-    //throwDie()
-    //view.setOnClickListener{
-    //    throwDie()}
 
     fun throwDie() {
-        dieTextView.text = (Random.nextInt(dieSides) + 1).toString()
-    }
-
-    fun throwDie(numId: Int) {
+        currentNumId = (Random.nextInt(dieSides)+1)
         dieTextView.text = (Random.nextInt(dieSides) + 1).toString()
     }
 
     override fun OnSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outstate)
+        super.onSaveInstanceState(outState)
         outState.putInt(currentNum, currentNumId)
     }
 
     companion object {
         fun newInstance(sides: Int) = DieFragment().apply {
-            //unfinished
             arguments = Bundle().apply {
-
+                putInt(DIESIDE, sides)
             }
         }
     }
