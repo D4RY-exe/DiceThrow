@@ -51,7 +51,7 @@ class DieFragment : Fragment() {
         dieTextView.text = (Random.nextInt(dieSides) + 1).toString()
     }
 
-    override fun OnSaveInstanceState(outState: Bundle) {
+    fun OnSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(currentNum, currentNumId)
     }
