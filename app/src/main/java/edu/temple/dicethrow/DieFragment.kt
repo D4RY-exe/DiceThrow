@@ -48,22 +48,12 @@ class DieFragment : Fragment() {
     }
 
 
-        //savedInstanceState.run {
-        //    currentNumId = getInt(currentNum, 0) }
-        //if (currentNumId == 0){
-        //    throwDie()}
-        //else{
-        //    dieTextView.text = currentNumId.toString()}
-
-        //view.setOnClickListener{ throwDie()}
-    //}
-
     fun throwDie() {
         currentNumId = (Random.nextInt(dieSides)+1)
         dieTextView.text = (Random.nextInt(dieSides) + 1).toString()
     }
 
-    override fun OnSaveInstanceState(outState: Bundle) {
+    fun OnSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(currentNum, currentNumId)
     }
