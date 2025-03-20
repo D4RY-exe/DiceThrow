@@ -5,6 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class DieViewModel : ViewModel() {
-    val currentRoll : MutableLiveData<Int> = MutableLiveData()
+    val currentRoll : MutableLiveData<Int> by lazy {
+        MutableLiveData()
+    }
+    fun getCurrentRoll() : LiveData<Int> {
+        return currentRoll
+    }
+
+    fun setCurrentRoll(roll: Int){
+        currentRoll.value = roll
+    }
 
 }
