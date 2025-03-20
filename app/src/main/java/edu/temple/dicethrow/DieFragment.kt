@@ -20,11 +20,9 @@ class DieFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            it.getInt(DIESIDE).run {
-                dieSides = this
+            dieSides = it.getInt(DIESIDE,6) //modified this to default to 6
             }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,25 +43,15 @@ class DieFragment : Fragment() {
             currentNumId = savedInstanceState.getInt(currentNum)
             dieTextView.text = currentNumId.toString()
         }
+        view.setOnClickListener{ throwDie()}
     }
-
-
-        //savedInstanceState.run {
-        //    currentNumId = getInt(currentNum, 0) }
-        //if (currentNumId == 0){
-        //    throwDie()}
-        //else{
-        //    dieTextView.text = currentNumId.toString()}
-
-        //view.setOnClickListener{ throwDie()}
-    //}
 
     fun throwDie() {
         currentNumId = (Random.nextInt(dieSides)+1)
         dieTextView.text = (Random.nextInt(dieSides) + 1).toString()
     }
 
-    override fun OnSaveInstanceState(outState: Bundle) {
+    fun OnSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(currentNum, currentNumId)
     }
